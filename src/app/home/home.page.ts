@@ -7,16 +7,16 @@ import { Http } from '@angular/http';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  users: any[];
+  weatherInfo: any = {};
 
   constructor(public http: Http) {
     this.getData();
   }
   getData() {
-    this.http.get('http://jsonplaceholder.typicode.com/users').subscribe(
+    this.http.get('http://api.openweathermap.org/data/2.5/weather?q=london&id=524901&APPID=3c9b6353b98f4955c12a6286f191da79').subscribe(
       data => {
         console.log(data.json());
-        this.users = data.json();
+        this.weatherInfo = data.json();
       },
       error => {
         console.log(error);
